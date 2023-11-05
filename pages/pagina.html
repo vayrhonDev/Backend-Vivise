@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Página</title>
+</head>
+<body>
+    <div id="datos"></div>
+
+    <script>
+        // Función para obtener datos del servidor
+        async function obtenerDatos() {
+            try {
+            // Actualiza la URL para que coincida con la ruta definida en tu servidor
+            const respuesta = await fetch('http://localhost:4000/practicasINF/llamarAVista');
+            const datos = await respuesta.json();
+            console.log(datos)
+            document.getElementById('datos').innerText = JSON.stringify(datos, null, 2);
+        } catch (error) {
+            console.error('Error al obtener datos:', error.message);
+        }
+    }
+
+        // Llamar a la función al cargar la página
+        window.onload = obtenerDatos;
+    </script>
+</body>
+</html>
